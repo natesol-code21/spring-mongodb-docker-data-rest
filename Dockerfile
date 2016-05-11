@@ -2,4 +2,4 @@ FROM frolvlad/alpine-oraclejdk8:slim
 VOLUME /tmp
 #ADD spring-mongodb-docker-data-rest-0.1.0.jar app.jar
 RUN sh -c 'touch /app.jar'
-ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://mongodb/micros","-Djava.security.egd=file:/dev/./urandom","-jar","target/spring-mongodb-docker-data-rest-0.1.0.jar"]
+ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://mongodb/micros","-Djava.security.egd=file:/dev/./urandom","-jar","target/docker/spring-mongodb-docker-data-rest-0.1.0.jar"]
