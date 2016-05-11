@@ -15,7 +15,8 @@ CMD ["mvn", "verify"]
 # Adding source, compile and package into a fat jar
 ADD src /code/src  
 CMD ["mvn", "package docker:build"]
-#COPY target/spring-mongodb-docker-data-rest-0.1.0.jar .
 ADD build/lib/spring-mongodb-docker-data-rest-0.1.0.jar app.jar
+#ADD target/spring-mongodb-docker-data-rest-0.1.0.jar app.jar
+
 RUN sh -c 'touch /app.jar'
 ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://mongodb/micros","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
