@@ -5,18 +5,18 @@ VOLUME /tmp
 CMD apt-get update  
 CMD apt-get install -y maven
 
-#WORKDIR /code
+WORKDIR /code
 
 # Prepare by downloading dependencies
-#ADD pom.xml /code/pom.xml  
+ADD pom.xml /code/pom.xml  
 CMD ["mvn", "dependency:resolve"]  
 CMD ["mvn", "verify"]
 
 # Adding source, compile and package into a fat jar
-#ADD src /code/src  
+ADD src /code/src  
 CMD ["mvn", "package"]
 CMD ["mvn", "docker:build"]
-COPY target/spring-mongodb-docker-data-rest-0.1.0.jar .
+#COPY target/spring-mongodb-docker-data-rest-0.1.0.jar .
 ADD spring-mongodb-docker-data-rest-0.1.0.jar app.jar
 RUN sh -c 'touch /app.jar'
 ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://mongodb/micros","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
