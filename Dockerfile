@@ -7,6 +7,8 @@ ENV APP_HOME /home/$USER_NAME/app
 
 RUN useradd -ms /bin/bash $USER_NAME
 RUN mkdir $APP_HOME
+RUN echo "wowowowowoowowowowowo"
+RUN ls $APP_HOME
 ADD spring-mongodb-docker-data-rest-0.1.0.jar $APP_HOME/spring-mongodb-docker-data-rest-0.1.0.jar
 RUN chown $USER_NAME $APP_HOME/spring-mongodb-docker-data-rest-0.1.0.jar
 USER $USER_NAME
