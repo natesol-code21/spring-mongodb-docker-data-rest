@@ -4,12 +4,14 @@ VOLUME /tmp
 #WORKDIR $DOCKERSPRING
 #COPY spring-mongodb-docker-data-rest-0.1.0.jar ./docker-spring
 #ADD $DOCKERSPRING  /dockers
-RUN mkdir -p /docker-test
-WORKDIR /docker-test
-COPY README ./
+ENV SPRING_JAR spring-mongodb-docker-data-rest-0.1.0.jar
+ENV SPRING_HOME /usr/spring-mongodb-docker-data-rest
+COPY target/docker/$SPRING_JAR $SPRING_HOME
+WORKDIR $SPRING_HOME
+#COPY README ./
 #COPY ./docker-test/spring-mongodb-docker-data-rest-0.1.0.jar ./
-COPY springmongo ./
-COPY . ./
-RUN sh -c 'touch spring-mongodb-docker-data-rest-0.1.0.jar'
-#ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://mongodb/micros","-Djava.security.egd=file:/dev/./urandom","-jar","spring-mongodb-docker-data-rest-0.1.0.jar"]
-ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://mongodb/micros","-Djava.security.egd=file:/dev/./urandom","-jar","springmongo.jar"]
+#COPY springmongo ./
+#COPY . ./
+RUN sh -c 'touch $SPRING_JAR'
+#ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://mongodb/micros","-Djava.security.egd=file:/dev/./urandom","-jar","$SPRING_JAR"]
+ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://mongodb/micros","-Djava.security.egd=file:/dev/./urandom","-jar","$SPRING_JAR"]
