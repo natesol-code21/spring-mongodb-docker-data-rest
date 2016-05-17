@@ -6,7 +6,7 @@ VOLUME /tmp
 #ADD $DOCKERSPRING  /dockers
 RUN mkdir -p /docker-test
 WORKDIR /docker-test
-
+COPY README ./
 COPY ./docker-test/spring-mongodb-docker-data-rest-0.1.0.jar ./
 COPY . ./
 RUN sh -c 'touch spring-mongodb-docker-data-rest-0.1.0.jar'
