@@ -6,7 +6,7 @@ VOLUME /tmp
 #ADD $DOCKERSPRING  /dockers
 ENV SPRING_JAR spring-mongodb-docker-data-rest-0.1.0.jar
 ENV SPRING_HOME /usr/spring-mongodb-docker-data-rest
-Add target/docker/$SPRING_JAR $SPRING_HOME
+Add /Users/Nathaniel_Solomon/docker-mongo/spring-mongodb-docker-data-rest/target/docker/$SPRING_JAR $SPRING_HOME
 WORKDIR $SPRING_HOME
 #COPY README ./
 #COPY ./docker-test/spring-mongodb-docker-data-rest-0.1.0.jar ./
